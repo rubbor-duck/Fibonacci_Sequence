@@ -1,5 +1,8 @@
 use std::io;
 
+//TODO: Increase the vector table limit from 46 to a bigger number
+//TODO: Add a way to print the sequence as a pyramid, or another way to increase code size.
+
 fn main() {
     println!("--Welcome to the Fibonoacci Sequence Calculator--");
     println!();
