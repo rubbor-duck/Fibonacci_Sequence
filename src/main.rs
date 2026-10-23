@@ -6,7 +6,7 @@ use std::io;
 fn main() {
     println!("--Welcome to the Fibonoacci Sequence Calculator--");
     println!();
-    println!("How many numbers do you want: ");
+    println!("How many numbers do you want (max value of 46): ");
 
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line");
@@ -16,7 +16,10 @@ fn main() {
     println!();
 
     fibonacci_sequence_calc(repeat);
+
 }
+
+
 
 fn fibonacci_sequence_calc(repeat: i32){
     let mut sequence_table= vec![];
@@ -43,7 +46,28 @@ fn fibonacci_sequence_calc(repeat: i32){
     print!("|| 0");
 
     for x in sequence_table.iter(){
-        print!(", {}", x);
+        if (x % 2) == 0{
+            //green if divisable by 2
+            print!(",\x1b[32m {}\x1b[0m", x);
+            continue;
+        }
+
+        else if (x % 3) == 0 {
+            //blue if divisable by 3
+            print!(",\x1b[34m {}\x1b[0m", x);
+            continue;
+        }
+        
+        else if (x % 5) == 0 {
+            //red if divisable by 5
+            print!(",\x1b[31m {}\x1b[0m", x);
+            continue;
+        }
+
+        else {
+            //magenta
+        print!(",\x1b[35m {}\x1b[0m", x);
+        }
     }
 
     print!(" ||");
