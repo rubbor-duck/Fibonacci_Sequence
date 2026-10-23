@@ -1,32 +1,33 @@
 use std::io;
 
-//TODO: Increase the vector table limit from 46 to a bigger number
-//TODO: Add a way to print the sequence as a pyramid, or another way to increase code size.
-
 fn main() {
-    println!("--Welcome to the Fibonoacci Sequence Calculator--");
-    println!();
-    println!("How many numbers do you want (max value of 46): ");
-
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Failed to read line");
-
-    let repeat: i32 = input.trim().parse().expect("Not a number");
-
-    println!();
-
-    fibonacci_sequence_calc(repeat);
+    
+    calculator_menu();
 
 }
 
 
 
-fn fibonacci_sequence_calc(repeat: i32){
-    let mut sequence_table= vec![];
-    let mut x1 = 0;
-    let mut x2 = 1;
+fn fibonacci_sequence_calc(){
+    //Repeat cannot be more than 92, or else overflow
 
-    let mut i = 0;
+    println!("--Welcome to the Fibonoacci Sequence Calculator--");
+    println!();
+    println!("How many numbers do you want (max value of 92): ");
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+
+    let repeat: i64 = input.trim().parse().expect("Not a number");
+
+    println!();
+
+
+    let mut sequence_table= vec![];
+    let mut x1:i64 = 0;
+    let mut x2:i64 = 1;
+
+    let mut i:i64 = 0;
 
     sequence_table.push(x2);
 
@@ -65,10 +66,64 @@ fn fibonacci_sequence_calc(repeat: i32){
         }
 
         else {
-            //magenta
+            //magenta as default
         print!(",\x1b[35m {}\x1b[0m", x);
         }
     }
 
     print!(" ||");
+}
+
+
+fn factorial_calc(){
+    //Repeat cannot exceed 20, or it will overflow
+    
+    println!("--Welcome to the Factorial Calculator--");
+    println!();
+    println!("What number do you want to calculate (max value of 20): ");
+
+    let mut input = String::new();
+    io::stdin().read_line(&mut input).expect("Failed to read line");
+
+    let repeat: i64 = input.trim().parse().expect("Not a number");
+
+    println!();
+    
+    let mut answer:i64 = 1;
+    let mut i = repeat;
+
+    while i > 0{
+        answer = i * answer;
+
+        i-=1;
+    }
+
+    println!("\x1b[31m {}\x1b[0m! is equal to \x1b[32m{} \x1b[0m", repeat, answer);
+}
+
+fn calculator_menu(){
+    let mut menu_select = -1;
+
+    while menu_select != 0 {
+        
+        println!();
+        println!();
+        println!("--Welcome to the Calculator--");
+        println!("Please Select a Function");
+        println!("0: Exit the program");
+        println!("1: Fibonacci Sequence Calculator");
+        println!("2: Factorial Calculator");
+
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Failed to read line");
+
+        menu_select = input.trim().parse().expect("Not a number");
+
+        match menu_select{
+            0=>println!("Have a good day!"),
+            1=>fibonacci_sequence_calc(),
+            2=>factorial_calc(),
+            _=>println!("That is not a vaild option"),
+        }
+    }
 }
