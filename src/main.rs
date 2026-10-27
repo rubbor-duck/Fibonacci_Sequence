@@ -10,23 +10,26 @@ fn main() {
 
 fn fibonacci_sequence_calc(){
     //Repeat cannot be more than 92, or else overflow
+    loop {
+        println!("--Welcome to the Fibonoacci Sequence Calculator--");
+        println!();
+        println!("How many numbers do you want (max value of 92): ");
 
-    println!("--Welcome to the Fibonoacci Sequence Calculator--");
-    println!();
-    println!("How many numbers do you want (max value of 92): ");
+        let mut input = String::new();
+        io::stdin().read_line(&mut input).expect("Failed to read line");
 
-    let mut input = String::new();
-    io::stdin().read_line(&mut input).expect("Failed to read line");
+        let repeat: i64 = input.trim().parse().expect("Not a number");
 
-    let repeat: i64 = input.trim().parse().expect("Not a number");
+        println!();
 
-    println!();
-
+        if repeat > 92 {
+            println!("That value is greater than 92, please try again");
+            continue;
+        }
 
     let mut sequence_table= vec![];
     let mut x1:i64 = 0;
     let mut x2:i64 = 1;
-
     let mut i:i64 = 0;
 
     sequence_table.push(x2);
@@ -72,12 +75,15 @@ fn fibonacci_sequence_calc(){
     }
 
     print!(" ||");
+
+    break;
+}
 }
 
 
 fn factorial_calc(){
     //Repeat cannot exceed 20, or it will overflow
-    
+    loop{
     println!("--Welcome to the Factorial Calculator--");
     println!();
     println!("What number do you want to calculate (max value of 20): ");
@@ -89,6 +95,11 @@ fn factorial_calc(){
 
     println!();
     
+    if repeat > 20{
+        println!("That value is greater than 20, please try again");
+        continue;
+    }
+
     let mut answer:i64 = 1;
     let mut i = repeat;
 
@@ -99,6 +110,9 @@ fn factorial_calc(){
     }
 
     println!("\x1b[31m {}\x1b[0m! is equal to \x1b[32m{} \x1b[0m", repeat, answer);
+
+    break;
+    }
 }
 
 fn calculator_menu(){
