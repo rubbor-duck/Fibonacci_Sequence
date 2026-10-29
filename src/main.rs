@@ -9,7 +9,10 @@ fn main() {
 
 
 fn fibonacci_sequence_calc(){
-    //Repeat cannot be more than 92, or else overflow
+    
+
+    // Loop is here so that we can check the user input, and use continue to restart the function
+    // if the user's input is greater than 92 
     loop {
         println!("--Welcome to the Fibonoacci Sequence Calculator--");
         println!();
@@ -22,11 +25,13 @@ fn fibonacci_sequence_calc(){
 
         println!();
 
+        // Repeat cannot be more than 92, or else it will overflow i64 value
         if repeat > 92 {
             println!("That value is greater than 92, please try again");
             continue;
         }
 
+    // used a vector table because we need a dynamic array
     let mut sequence_table= vec![];
     let mut x1:i64 = 0;
     let mut x2:i64 = 1;
@@ -82,7 +87,8 @@ fn fibonacci_sequence_calc(){
 
 
 fn factorial_calc(){
-    //Repeat cannot exceed 20, or it will overflow
+    // Loop is here so that we can check the user input, and use continue to restart the function
+    // if the user's input is greater than 20
     loop{
     println!("--Welcome to the Factorial Calculator--");
     println!();
@@ -95,6 +101,7 @@ fn factorial_calc(){
 
     println!();
     
+    //Repeat cannot exceed 20, or it will overflow the i64 array value
     if repeat > 20{
         println!("That value is greater than 20, please try again");
         continue;
